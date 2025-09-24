@@ -16,6 +16,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"strings"
 	"time"
@@ -164,6 +166,8 @@ func main() {
 	if err != nil {
 		klog.Fatalf("Error creating manager: %v", err)
 	}
+
+	mgr.AddMetricsServerExtraHandler("/debug/pprof/", http.DefaultServeMux)
 
 	// Setup Scheme for all resources
 	if err := machinev1beta1.AddToScheme(mgr.GetScheme()); err != nil {
