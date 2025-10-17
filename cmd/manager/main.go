@@ -123,7 +123,7 @@ func main() {
 	}
 
 	// Setup a Manager
-	syncPeriod := 10 * time.Minute
+	syncPeriod := 30 * time.Second
 	opts := manager.Options{
 		LeaderElection:          *leaderElect,
 		LeaderElectionNamespace: *leaderElectResourceNamespace,
